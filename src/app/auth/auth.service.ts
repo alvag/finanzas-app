@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Router } from '@angular/router';
@@ -9,11 +9,15 @@ import { User } from '../models/user.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.reducer';
 import { ActivarLoadingAction, DesactivarLoadingAction } from '../shared/ui.actions';
+import { SetUserAction } from './auth.actions';
+import { Subscription } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
+
+    private subscription: Subscription = new Subscription();
 
     constructor(private afAuth: AngularFireAuth,
         private router: Router,
@@ -23,10 +27,13 @@ export class AuthService {
     initAuthListener() {
         this.afAuth.authState.subscribe((fbUser: firebase.User) => {
             if (fbUser) {
-                this.afDB.doc(`${fbUser.uid}/usuario`).valueChanges()
-                    .subscribe(user => {
-                        console.log(user);
+                this.subscription = this.afDB.doc(`${fbUser.uid}/usuario`).valueChanges()
+                    .subscribe((user: any) => {
+                        const newUser = new User(user);
+                        this.store.dispatch(new SetUserAction(newUser));
                     });
+            } else {
+                this.subscription.unsubscribe();
             }
         });
     }
