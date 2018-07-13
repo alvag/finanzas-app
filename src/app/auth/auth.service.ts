@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestore } from 'angularfire2/firestore';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import * as firebase from 'firebase';
 import { map } from 'rxjs/operators';
+import { User } from '../models/user.model';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +13,8 @@ import { map } from 'rxjs/operators';
 export class AuthService {
 
     constructor(private afAuth: AngularFireAuth,
-        private router: Router) { }
+        private router: Router,
+        private afDB: AngularFirestore) { }
 
     initAuthListener() {
         this.afAuth.authState.subscribe((fbUser: firebase.User) => {
@@ -23,7 +26,18 @@ export class AuthService {
 
         this.afAuth.auth.createUserWithEmailAndPassword(email, password)
             .then(response => {
-                this.router.navigate(['/']);
+
+                const user: User = {
+                    uid: response.user.uid,
+                    nombre,
+                    email: response.user.email
+                };
+
+                this.afDB.doc(`${user.uid}/usuario`).set(user)
+                    .then(() => {
+                        this.router.navigate(['/']);
+                    });
+
             }).catch(error => {
                 console.log(error);
                 Swal('Error al registrar', error.message, 'error');
