@@ -4,6 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-rounting.module';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -31,7 +35,10 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     imports: [
         BrowserModule,
         AppRoutingModule,
-        FormsModule
+        FormsModule,
+        AngularFireModule,
+        AngularFirestoreModule,
+        AngularFireAuthModule
     ],
     providers: [],
     bootstrap: [AppComponent]
