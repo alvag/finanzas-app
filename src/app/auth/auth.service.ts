@@ -33,4 +33,9 @@ export class AuthService {
                 Swal('Error en el login', error.message, 'error');
             });
     }
+
+    logout() {
+        this.router.navigate(['/login']);
+        this.afAuth.auth.signOut();
+    }
 }
