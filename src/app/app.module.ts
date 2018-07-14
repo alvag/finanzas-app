@@ -8,6 +8,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+import { ChartsModule } from 'ng2-charts';
+
 import { environment } from '../environments/environment';
 
 import { StoreModule } from '@ngrx/store';
@@ -54,7 +56,8 @@ import { OrdenIngresoEgresoPipe } from './ingreso-egreso/orden-ingreso-egreso.pi
         StoreDevtoolsModule.instrument({
             maxAge: 25,
             logOnly: environment.production
-        })
+        }),
+        ChartsModule
     ],
     providers: [
         { provide: LoggerService, useClass: ConsoleLoggerService },

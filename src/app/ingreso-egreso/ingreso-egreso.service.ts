@@ -19,7 +19,6 @@ export class IngresoEgresoService {
 
     constructor(private afDB: AngularFirestore,
         private authService: AuthService,
-        private logger: LoggerService,
         private store: Store<AppState>) { }
 
     cancelarSubscriptions() {
@@ -30,7 +29,6 @@ export class IngresoEgresoService {
         this.subscriptions.push(this.store.select('auth')
             .pipe(filter(auth => auth.user != null))
             .subscribe(auth => {
-                this.logger.info(auth.user);
                 this.ingresoEgresoItems(auth.user.uid);
             }));
     }

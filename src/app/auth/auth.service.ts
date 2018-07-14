@@ -11,6 +11,7 @@ import { AppState } from '../app.reducer';
 import { ActivarLoadingAction, DesactivarLoadingAction } from '../shared/ui.actions';
 import { SetUserAction } from './auth.actions';
 import { Subscription } from 'rxjs';
+import { LoggerService } from '../services/logger/logger.service';
 
 @Injectable({
     providedIn: 'root'
@@ -23,7 +24,8 @@ export class AuthService {
     constructor(private afAuth: AngularFireAuth,
         private router: Router,
         private afDB: AngularFirestore,
-        private store: Store<AppState>) { }
+        private store: Store<AppState>,
+        private logger: LoggerService) { }
 
     initAuthListener() {
         this.afAuth.authState.subscribe((fbUser: firebase.User) => {
@@ -33,10 +35,12 @@ export class AuthService {
                         const newUser = new User(user);
                         this.store.dispatch(new SetUserAction(newUser));
                         this.usuario = newUser;
+                        this.logger.info('User Auth', this.usuario);
                     });
             } else {
                 this.usuario = null;
                 this.subscription.unsubscribe();
+                this.logger.info('User Auth', this.usuario);
             }
         });
     }
