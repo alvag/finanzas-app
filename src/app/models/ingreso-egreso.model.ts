@@ -9,6 +9,6 @@ export class IngresoEgreso {
         this.descripcion = dataObj && dataObj.descripcion || null;
         this.monto = dataObj && dataObj.monto || null;
         this.tipo = dataObj && dataObj.tipo || null;
-        this.uid = dataObj && dataObj.uid || null;
+        /* this.uid = dataObj && dataObj.uid || null; */
     }
 }
