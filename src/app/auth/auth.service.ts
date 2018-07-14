@@ -65,7 +65,7 @@ export class AuthService {
                     });
 
             }).catch(error => {
-                console.log(error);
+                this.logger.info(error);
                 this.store.dispatch(new DesactivarLoadingAction());
                 Swal('Error al registrar', error.message, 'error');
             });
@@ -79,7 +79,7 @@ export class AuthService {
                 this.router.navigate(['/']);
                 this.store.dispatch(new DesactivarLoadingAction());
             }).catch(error => {
-                console.log(error);
+                this.logger.info(error);
                 Swal('Error en el login', error.message, 'error');
                 this.store.dispatch(new DesactivarLoadingAction());
             });
