@@ -26,6 +26,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { LoggerService } from './services/logger/logger.service';
 import { ConsoleLoggerService } from './services/logger/console-logger.service';
+import { OrdenIngresoEgresoPipe } from './ingreso-egreso/orden-ingreso-egreso.pipe';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { ConsoleLoggerService } from './services/logger/console-logger.service';
         DetalleComponent,
         FooterComponent,
         NavbarComponent,
-        SidebarComponent
+        SidebarComponent,
+        OrdenIngresoEgresoPipe
     ],
     imports: [
         BrowserModule,
