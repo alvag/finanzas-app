@@ -24,6 +24,8 @@ import { DetalleComponent } from './ingreso-egreso/detalle/detalle.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { LoggerService } from './services/logger/logger.service';
+import { ConsoleLoggerService } from './services/logger/console-logger.service';
 
 @NgModule({
     declarations: [
@@ -52,7 +54,9 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
             logOnly: environment.production
         })
     ],
-    providers: [],
+    providers: [
+        { provide: LoggerService, useClass: ConsoleLoggerService },
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
