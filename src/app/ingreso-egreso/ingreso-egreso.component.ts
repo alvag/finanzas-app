@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { IngresoEgreso } from '../models/ingreso-egreso.model';
 
 @Component({
     selector: 'app-ingreso-egreso',
@@ -21,7 +22,13 @@ export class IngresoEgresoComponent implements OnInit {
     }
 
     crearIngresoEgreso() {
-        console.log(this.formData.value);
+        const ingresoEgreso = new IngresoEgreso({
+            ...this.formData.value,
+            tipo: this.tipo
+        });
+
+        console.log(ingresoEgreso);
+
     }
 
 }
