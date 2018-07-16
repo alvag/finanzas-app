@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../app.reducer';
+import { AppState } from '../ingreso-egreso.reducer';
 import { IngresoEgreso } from '../../models/ingreso-egreso.model';
 import { LoggerService } from '../../services/logger/logger.service';
 import { Subscription } from 'rxjs';

@@ -5,7 +5,7 @@ import { IngresoEgresoService } from './ingreso-egreso.service';
 import { LoggerService } from '../services/logger/logger.service';
 import Swal from 'sweetalert2';
 import { Store } from '@ngrx/store';
-import { AppState } from '../app.reducer';
+import { AppState } from '../ingreso-egreso/ingreso-egreso.reducer';
 import { Subscription } from 'rxjs';
 import { ActivarLoadingAction, DesactivarLoadingAction } from '../shared/ui.actions';
 

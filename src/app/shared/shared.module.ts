@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { AppRoutingModule } from '../app-rounting.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     imports: [
         CommonModule,
-        AppRoutingModule
+        RouterModule
     ],
     declarations: [
         FooterComponent,
